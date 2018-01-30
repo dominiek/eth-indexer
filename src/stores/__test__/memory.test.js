@@ -1,6 +1,6 @@
 
 import BigNumber from 'bignumber.js';
-import LevelStore from '../level';
+import MemoryStore from '../memory';
 
 let store;
 beforeAll(() => {
@@ -17,7 +17,8 @@ beforeAll(() => {
       },
     },
   };
-  store = new LevelStore(indexing, '/tmp/indexer-test');
+  store = new MemoryStore(indexing);
+  store.init();
 });
 
 test('Should index events according to indexing settings', async () => {
@@ -53,7 +54,7 @@ test('Should index events according to indexing settings', async () => {
   await store.put([depositEvent, depositEvent2, depositEvent3, withdrawEvent]);
   const depositEvents = await store.get('Deposit', 'user', '0xD0M');
   expect(depositEvents.length).toBe(2);
-  expect(depositEvents[0].args.amount).toBe('1000');
+  expect(depositEvents[0].args.amount.toString()).toBe('1000');
   const withdrawEvents = await store.get('Withdraw', 'user', '0xD0M');
   expect(withdrawEvents.length).toBe(1);
 });
