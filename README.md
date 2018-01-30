@@ -47,7 +47,7 @@ Define which events to index on which keys:
 ```javascript
 const indexing = {
   events: {
-    Withdrawal: {
+    Withdraw: {
       keys: ['user'],
     },
     Trade: {
@@ -75,7 +75,7 @@ await indexer.syncAll({
 Once indexing is complete events can be retrieved as follows:
 
 ```javascript
-const events = await store.get('Withdrawal', 'user', '0x13d8d38421eb02973f3f923a71a27917bd483190');
+const events = await store.get('Withdraw', 'user', '0x13d8d38421eb02973f3f923a71a27917bd483190');
 ```
 
 ## Directory Structure
