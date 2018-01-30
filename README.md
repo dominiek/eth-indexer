@@ -9,8 +9,9 @@ _Work in progress_
 
 - [x] Local in-memory store
 - [x] LevelDB store
-- [ ] Redis in-memory store
-- [ ] MongoDB in-memory store
+- [x] Redis in-memory store
+- [x] MongoDB store
+- [ ] Elasticsearch store
 - [ ] Benchmark documentation
 
 ## Supported Indexing Stores
