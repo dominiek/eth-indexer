@@ -12,12 +12,14 @@ _Work in progress_
 - [x] Redis in-memory store
 - [x] MongoDB store
 - [x] Elasticsearch store
+- [x] File store
 - [ ] Benchmark documentation
 
 ## Supported Indexing Stores
 
-* Memory (local)
-* Memory (Redis)
+* Local Memory
+* Local Flat file
+* Redis
 * MongoDB
 * Elasticsearch
 * LevelDB
