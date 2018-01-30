@@ -1,12 +1,12 @@
 
 import EtherdeltaABI from './abi';
-import LevelStore from '../../src/stores/level';
+import RedisStore from '../../src/stores/redis';
 import { Indexer } from '../../src/index';
 
 const sync = async () => {
   const indexing = {
     events: {
-      Withdrawal: {
+      Withdraw: {
         keys: ['user'],
       },
       Trade: {
@@ -14,11 +14,12 @@ const sync = async () => {
       },
     },
   };
-  const store = new LevelStore(indexing, './etherdelta');
+  const store = new RedisStore(indexing);
   await store.reset();
   const indexer = new Indexer(store, EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819');
   await indexer.syncAll({
-    fromBlock: 4906764,
+    fromBlock: 3154100,
+    // fromBlock: 4800000,
   });
 };
 

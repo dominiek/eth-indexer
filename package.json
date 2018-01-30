@@ -29,6 +29,7 @@
     "ethjs-schema": "^0.2.0",
     "leveldown": "^2.1.1",
     "levelup": "^2.0.1",
+    "redis": "^2.8.0",
     "rimraf": "^2.6.2",
     "web3": "^0.20.4",
     "winston": "3.0.0-rc0"

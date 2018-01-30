@@ -8,7 +8,7 @@ _Work in progress_
 ## Todo
 
 - [x] Local in-memory store
-- [ ] BigNumber support in LevelDB
+- [x] LevelDB store
 - [ ] Redis in-memory store
 - [ ] MongoDB in-memory store
 - [ ] Benchmark documentation
