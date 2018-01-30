@@ -72,6 +72,12 @@ await indexer.syncAll({
 });
 ```
 
+Once indexing is complete events can be retrieved as follows:
+
+```javascript
+const events = await store.get('Withdrawal', 'user', '0x13d8d38421eb02973f3f923a71a27917bd483190');
+```
+
 ## Directory Structure
 
 * `package.json` - Configure dependencies
