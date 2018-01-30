@@ -22,6 +22,7 @@
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
+    "elasticsearch": "^14.0.0",
     "ethjs": "^0.3.3",
     "ethjs-abi": "^0.2.1",
     "ethjs-query": "^0.3.3",

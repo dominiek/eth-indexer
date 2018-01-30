@@ -1,6 +1,6 @@
 
 import EtherdeltaABI from './abi.json';
-import MongodbStore from '../../src/stores/mongodb';
+import ElasticsearchStore from '../../src/stores/elasticsearch';
 import { Indexer } from '../../src/index';
 
 const sync = async () => {
@@ -14,7 +14,7 @@ const sync = async () => {
       },
     },
   };
-  const store = new MongodbStore(indexing, 'mongodb://localhost:27017/eth-indexer');
+  const store = new ElasticsearchStore(indexing);
   await store.reset();
   const indexer = new Indexer(store, EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819');
   await indexer.syncAll({

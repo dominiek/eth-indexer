@@ -11,11 +11,15 @@ _Work in progress_
 - [x] LevelDB store
 - [x] Redis in-memory store
 - [x] MongoDB store
-- [ ] Elasticsearch store
+- [x] Elasticsearch store
 - [ ] Benchmark documentation
 
 ## Supported Indexing Stores
 
+* Memory (local)
+* Memory (Redis)
+* MongoDB
+* Elasticsearch
 * LevelDB
 
 ## Install Dependencies
