@@ -5,7 +5,6 @@
   "author": "Dominiek Ter Heide <info@dominiek.com>",
   "license": "MIT",
   "main": "lib/index.js",
-  "license": "MIT",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src/run.js\"",
     "build:clean": "rimraf ./dist",
