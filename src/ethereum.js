@@ -7,6 +7,17 @@ import logger from './logger';
 
 const sleep = timeout => new Promise(accept => setTimeout(() => accept(), timeout));
 
+
+const chunk = (arr, len) => {
+  const chunks = [];
+  let i = 0;
+  const n = arr.length;
+  while (i < n) {
+    chunks.push(arr.slice(i, i += len));
+  }
+  return chunks;
+};
+
 export default class Ethereum {
   constructor(abi, contractAddress, readProviderUrl = 'http://127.0.0.1:8545') {
     this.readProviderUrl = readProviderUrl;
@@ -63,7 +74,7 @@ export default class Ethereum {
       blockNumber,
     };
   }
-  async readAllEvents(fromBlock, toBlock, { skipBlocks }, fn) {
+  async readAllEvents(fromBlock, toBlock, { skipBlocks, batchSize }, fn) {
     const jobs = [];
     if (skipBlocks) {
       logger.log('info', `Skipping blocks ${skipBlocks.min} to ${skipBlocks.max} (already synced)`);
@@ -80,9 +91,15 @@ export default class Ethereum {
         });
       }
     }
-    for (const job of jobs) {
-      const result = await this.getEventsForBlock(job.blockNumber);
-      await fn(result, job);
+    const batches = chunk(jobs, batchSize || 1);
+    for (const batch of batches) {
+      const promises = batch.map(job => this.getEventsForBlock(job.blockNumber));
+      const results = await Promise.all(promises);
+      let i = 0;
+      for (const result of results) {
+        await fn(result, batch[i]);
+        i += 1;
+      }
     }
   }
 }

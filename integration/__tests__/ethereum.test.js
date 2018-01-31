@@ -1,10 +1,10 @@
 
 
-import EtherdeltaABI from '../../examples/etherdelta/abi';
+import EtherdeltaABI from '../../examples/etherdelta/abi.json';
 import Ethereum from '../../src/ethereum';
 
 test('Should get status of client', async () => {
-  const ethereum = new Ethereum(EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819')
+  const ethereum = new Ethereum(EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819');
   const status = await ethereum.clientStatus();
   const { syncing, blockNumber } = status;
   expect(syncing).toBe(false);
@@ -12,7 +12,7 @@ test('Should get status of client', async () => {
 });
 
 test('Should read all events from blockchain', async () => {
-  const ethereum = new Ethereum(EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819')
+  const ethereum = new Ethereum(EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819');
   let events = [];
   await new Promise((accept) => {
     ethereum.readAllEvents(4744470, 4744471, {}, async (result) => {
