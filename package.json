@@ -1,7 +1,7 @@
 {
   "name": "eth-indexer",
   "version": "0.1.0",
-  "description": "Blockchain indexer for Ethereum",
+  "description": "High performance Ethereum smart contract event indexing for fast local retrieval",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
