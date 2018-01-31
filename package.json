@@ -5,6 +5,15 @@
   "author": "Dominiek Ter Heide <info@dominiek.com>",
   "license": "MIT",
   "main": "lib/index.js",
+  "url": "",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dominiek/eth-indexer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dominiek/eth-indexer/issues"
+  },
+  "homepage": "https://github.com/dominiek/eth-indexer",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src/run.js\"",
     "build:clean": "rimraf ./dist",
