@@ -1,5 +1,5 @@
 
-# 0.1.7 -- Bugfixes
+# 0.1.9 -- Bugfixes
 
 - Fix for BigNumber serialization
 

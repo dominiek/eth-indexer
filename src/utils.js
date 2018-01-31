@@ -1,10 +1,15 @@
 
 import BigNumber from 'bignumber.js';
 
+const isBigNumber = value =>
+  (value && value.isBigNumber === true) ||
+  (value && value instanceof BigNumber) ||
+  (value && value.lte && value.toNumber);
+
 export const serialize = (event) => {
   const doc = Object.assign({}, event);
   for (const key in event.args) {
-    if (event.args[key] && event.args[key].isBigNumber) {
+    if (isBigNumber(event.args[key])) {
       doc.args[key] = {
         type: 'BigNumber',
         value: event.args[key].toString(),
