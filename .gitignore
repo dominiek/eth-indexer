@@ -5,3 +5,4 @@
 .DS_Store
 /etherdelta.db
 /etherdelta.leveldb
+/lib

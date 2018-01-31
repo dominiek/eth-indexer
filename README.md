@@ -12,7 +12,7 @@ Syncs events from Ethereum and indexes them for fast retrieval. This is useful a
 
 - [x] Keep track of blockNumbers in persistence for fast-resume
 - [x] Benchmark documentation
-- [ ] Support going forward syncing for Ethereum
+- [x] Support going forward syncing for Ethereum
 - [ ] NPM package
 - [ ] Improved failsafes for data consistency
 - [ ] Split up stores into separate dependencies

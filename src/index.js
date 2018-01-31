@@ -2,6 +2,12 @@
 import logger from './logger';
 import Ethereum from './ethereum';
 
+import fileStore from './stores/file';
+
+export const stores = {
+  file: fileStore,
+};
+
 const waitForBlockchainSync = client => new Promise((accept) => {
   let i = 0;
   const getAndCheckStatus = (callback) => {
