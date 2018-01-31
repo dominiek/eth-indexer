@@ -1,28 +1,31 @@
 
-# Ethereum Indexer
+# High Performance Ethereum Indexer
 
-Syncs events from Ethereum and indexes them for fast retrieval. This is useful for production Dapps.
+Syncs events from Ethereum and indexes them for fast retrieval. This is useful and often essential for production Dapps.
 
-_Work in progress_
+* Support for 6 different persistence stores
+* Includes "single-node friendly" stores such as flat-file JSON
+* Comprehensive error retry logic when communicating with Ethereum node
+* Maximum throughput via JSON RPC using batched parallel fetching
 
 ## Todo
 
-- [x] Local in-memory store
-- [x] LevelDB store
-- [x] Redis in-memory store
-- [x] MongoDB store
-- [x] Elasticsearch store
-- [x] File store
+- [ ] Keep track of blockNumbers in persistence for fast-resume
+- [ ] Support going forward syncing for Ethereum
 - [ ] Benchmark documentation
 
-## Supported Indexing Stores
+## Supported Indexing Stores and Benchmarks
 
-* Local Memory
-* Local Flat file
-* Redis
-* MongoDB
-* Elasticsearch
-* LevelDB
+The following indexing implementations have been benchmarked on an Ethereum blockchain section with a relatively large number of events (EtherDelta exchange blocks `4800000` - `5002718`) on a single 8-core 2017 Macbook Pro:
+
+|Store Name         |Store ID       |Events Per Second |Blocks Per Second |
+|-------------------|---------------|------------------|------------------|
+|Local Memory       |`memory`       |4072.7/s          |464.5/s           |
+|Redis              |`redis`        |2049.55/s         |235.25/s          |
+|Local Flat File    |`file`         |1798.75/s         |201.75/s          |
+|MongoDB            |`mongodb`      |795.5/s           |94.6/s            |
+|Elasticsearch      |`elasticsearch`|452.25/s          |57.1/s            |
+|LevelDB            |`level`        |207.35/s          |26.95/s           |
 
 ## Install Dependencies
 

@@ -29,7 +29,7 @@ export class Indexer {
     this.store.init();
     this.blockchain = new Ethereum(abi, contractAddress, readProviderUrl);
   }
-  async syncAll({ skipBlocks, fromBlock }) {
+  async syncAll({ batchSize, skipBlocks, fromBlock }) {
     const clientStatus = await this.blockchain.clientStatus();
     const { syncing, blockNumber } = clientStatus;
     const toBlock = blockNumber;
@@ -44,13 +44,26 @@ export class Indexer {
     let blocksCount = 0;
     let previousEventsCount = 0;
     let previousBlocksCount = 0;
+    let blocksAverages = [];
+    let eventsAverages = [];
     setInterval(() => {
       if (previousEventsCount > 0) {
         const eventsPerSecond = eventsCount - previousEventsCount;
         const blocksPerSecond = blocksCount - previousBlocksCount;
+        eventsAverages.push(eventsPerSecond);
+        blocksAverages.push(blocksPerSecond);
         const progress = Math.round((100 * (blocksCount - fromBlock)) / (toBlock - fromBlock));
         const stats = `events=${eventsPerSecond}/s, blocks=${blocksPerSecond}/s (blockNumber=${blocksCount}, totalEvents=${eventsCount}, progress=${progress}%`;
         logger.log('info', `Indexing Ethereum events (${stats})`);
+        if (blocksAverages.length >= 20) {
+          const blocksAverage = blocksAverages
+            .reduce((total, num) => total + num, 0) / blocksAverages.length;
+          const eventsAverage = eventsAverages
+            .reduce((total, num) => total + num, 0) / eventsAverages.length;
+          logger.log('info', `Averages: events=${eventsAverage}/s, blocks=${blocksAverage}/s`);
+          blocksAverages = [];
+          eventsAverages = [];
+        }
       }
       previousEventsCount = eventsCount;
       previousBlocksCount = blocksCount;
@@ -59,7 +72,7 @@ export class Indexer {
     this.blockchain.readAllEvents(
       fromBlock,
       toBlock,
-      { skipBlocks },
+      { skipBlocks, batchSize },
       async (events, status) => {
         if (events.length > 0) {
           await this.store.put(events);
