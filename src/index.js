@@ -47,7 +47,7 @@ export class Indexer {
     let blocksAverages = [];
     let eventsAverages = [];
     setInterval(() => {
-      if (previousEventsCount > 0) {
+      if (previousEventsCount > 0 && blocksCount <= toBlock) {
         const eventsPerSecond = eventsCount - previousEventsCount;
         const blocksPerSecond = blocksCount - previousBlocksCount;
         eventsAverages.push(eventsPerSecond);
@@ -76,7 +76,10 @@ export class Indexer {
         skipBlocks = { min: fromBlock, max: blockInfo.blockNumber };
       }
     }
-
+    this.blockchain.readNewEvents(toBlock, async (event) => {
+      logger.log('info', `Processing real-time Ethereum ${event.event} event`);
+      this.store.put([event]);
+    });
     this.blockchain.readAllEvents(
       fromBlock,
       toBlock,
@@ -90,7 +93,7 @@ export class Indexer {
         eventsCount += events.length;
         blocksCount = status.blockNumber;
         if (this.store.saveBlockInfo) {
-          await this.store.saveBlockInfo({ blockNumber: status.blockNumber });
+          this.store.saveBlockInfo({ blockNumber: status.blockNumber }).then(() => {});
         }
       },
     );
