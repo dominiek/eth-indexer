@@ -24,7 +24,7 @@ afterAll(() => {
   store.close();
 });
 
-test('Should index events according to indexing settings', async () => {
+test.skip('Should index events according to indexing settings', async () => {
   const depositEvent = {
     transactionHash: '1',
     args: {
