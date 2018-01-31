@@ -1,4 +1,8 @@
 
+# 0.1.10 -- Bugfixes
+
+- Ensuring transaction information is properly serialized
+
 # 0.1.9 -- Bugfixes
 
 - Fix for BigNumber serialization
