@@ -8,6 +8,7 @@ import redisStore from './stores/redis';
 import mongodbStore from './stores/mongodb';
 import elasticsearchStore from './stores/elasticsearch';
 import levelStore from './stores/level';
+import { serialize, unserialize } from './utils';
 
 export const stores = {
   memory: memoryStore,
@@ -16,6 +17,10 @@ export const stores = {
   mongodb: mongodbStore,
   elasticsearch: elasticsearchStore,
   level: levelStore,
+};
+
+export const utils = {
+  serialize, unserialize,
 };
 
 const waitForBlockchainSync = client => new Promise((accept) => {

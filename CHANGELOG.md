@@ -1,4 +1,9 @@
 
+# 0.1.5 -- Utils & Fixes
+
+- Exposing serialize and unserialize functions via utils
+- Fixed file store error when no index exists
+
 # 0.1.5 -- NPM Package Tweaks
 
 - Including all stores in lib
