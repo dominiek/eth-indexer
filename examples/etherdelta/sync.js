@@ -1,6 +1,6 @@
 
 import EtherdeltaABI from './abi.json';
-import Store from '../../src/stores/level';
+import Store from '../../src/stores/file';
 import { Indexer } from '../../src/index';
 
 const sync = async () => {
@@ -14,8 +14,7 @@ const sync = async () => {
       },
     },
   };
-  const store = new Store(indexing, './etherdelta.leveldb');
-  await store.reset();
+  const store = new Store(indexing, './etherdelta.db');
   const indexer = new Indexer(store, EtherdeltaABI, '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819');
   await indexer.syncAll({
     // fromBlock: 3154100,

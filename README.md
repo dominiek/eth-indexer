@@ -10,9 +10,12 @@ Syncs events from Ethereum and indexes them for fast retrieval. This is useful a
 
 ## Todo
 
-- [ ] Keep track of blockNumbers in persistence for fast-resume
+- [x] Keep track of blockNumbers in persistence for fast-resume
+- [x] Benchmark documentation
 - [ ] Support going forward syncing for Ethereum
-- [ ] Benchmark documentation
+- [ ] NPM package
+- [ ] Improved failsafes for data consistency
+- [ ] Split up stores into separate dependencies
 
 ## Supported Indexing Stores and Benchmarks
 

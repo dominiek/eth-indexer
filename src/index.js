@@ -29,7 +29,7 @@ export class Indexer {
     this.store.init();
     this.blockchain = new Ethereum(abi, contractAddress, readProviderUrl);
   }
-  async syncAll({ batchSize, skipBlocks, fromBlock }) {
+  async syncAll({ batchSize, fromBlock }) {
     const clientStatus = await this.blockchain.clientStatus();
     const { syncing, blockNumber } = clientStatus;
     const toBlock = blockNumber;
@@ -69,6 +69,14 @@ export class Indexer {
       previousBlocksCount = blocksCount;
     }, 1000);
 
+    let skipBlocks = null;
+    if (this.store.getBlockInfo) {
+      const blockInfo = await this.store.getBlockInfo();
+      if (blockInfo && blockInfo.blockNumber) {
+        skipBlocks = { min: fromBlock, max: blockInfo.blockNumber };
+      }
+    }
+
     this.blockchain.readAllEvents(
       fromBlock,
       toBlock,
@@ -81,6 +89,9 @@ export class Indexer {
         }
         eventsCount += events.length;
         blocksCount = status.blockNumber;
+        if (this.store.saveBlockInfo) {
+          await this.store.saveBlockInfo({ blockNumber: status.blockNumber });
+        }
       },
     );
   }
