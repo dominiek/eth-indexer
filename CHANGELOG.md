@@ -1,5 +1,5 @@
 
-# 0.1.5 -- Utils & Fixes
+# 0.1.7 -- Utils & Fixes
 
 - Exposing serialize and unserialize functions via utils
 - Fixed file store error when no index exists
