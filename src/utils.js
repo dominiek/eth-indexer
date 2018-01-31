@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 export const serialize = (event) => {
   const doc = Object.assign({}, event);
   for (const key in event.args) {
-    if (event.args[key] instanceof BigNumber) {
+    if (event.args[key] && event.args[key].isBigNumber) {
       doc.args[key] = {
         type: 'BigNumber',
         value: event.args[key].toString(),

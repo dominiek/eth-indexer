@@ -22,6 +22,7 @@ test('Should read all events from blockchain', async () => {
     });
   });
   expect(events.length).toBe(20);
+  expect(events[0].transactionIndex.isBigNumber, true);
 });
 
 test('Should read balances for a given user by calling contract method', async () => {

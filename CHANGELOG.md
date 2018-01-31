@@ -1,4 +1,8 @@
 
+# 0.1.7 -- Bugfixes
+
+- Fix for BigNumber serialization
+
 # 0.1.7 -- Utils & Fixes
 
 - Exposing serialize and unserialize functions via utils
