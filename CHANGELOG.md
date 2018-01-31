@@ -1,5 +1,5 @@
 
-# 0.1.1 -- eth-indexer
+# 0.1.2 -- eth-indexer
 
 - Basic high performance indexing
 - Tests
