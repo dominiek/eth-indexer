@@ -1,4 +1,8 @@
 
+# 0.1.5 -- NPM Package Tweaks
+
+- Including all stores in lib
+
 # 0.1.4 -- NPM Package
 
 - NPM Package using npmpub

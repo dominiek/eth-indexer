@@ -2,10 +2,20 @@
 import logger from './logger';
 import Ethereum from './ethereum';
 
+import memoryStore from './stores/memory';
 import fileStore from './stores/file';
+import redisStore from './stores/redis';
+import mongodbStore from './stores/mongodb';
+import elasticsearchStore from './stores/elasticsearch';
+import levelStore from './stores/level';
 
 export const stores = {
+  memory: memoryStore,
   file: fileStore,
+  redis: redisStore,
+  mongodb: mongodbStore,
+  elasticsearch: elasticsearchStore,
+  level: levelStore,
 };
 
 const waitForBlockchainSync = client => new Promise((accept) => {
