@@ -1,4 +1,8 @@
 
+# 0.1.3 -- NPM Package
+
+- NPM Package using npmpub
+
 # 0.1.2 -- eth-indexer
 
 - Basic high performance indexing
