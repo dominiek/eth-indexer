@@ -4,6 +4,7 @@ import EthQuery from 'ethjs-query';
 import EthAbi from 'ethjs-abi';
 import Web3 from 'web3';
 import logger from './logger';
+import BigNumber from 'bignumber.js';
 
 const sleep = timeout => new Promise(accept => setTimeout(() => accept(), timeout));
 
@@ -16,6 +17,20 @@ const chunk = (arr, len) => {
     chunks.push(arr.slice(i, i += len));
   }
   return chunks;
+};
+
+const normalizeEvent = (event) => {
+  const normalizedEvent = Object.assign({}, event);
+  if (typeof normalizeEvent.blockNumber === 'number') {
+    normalizeEvent.blockNumber = new BigNumber(normalizeEvent.blockNumber);
+  }
+  if (typeof normalizeEvent.transactionIndex === 'number') {
+    normalizeEvent.transactionIndex = new BigNumber(normalizeEvent.transactionIndex);
+  }
+  if (typeof normalizeEvent.logIndex === 'number') {
+    normalizeEvent.logIndex = new BigNumber(normalizeEvent.logIndex);
+  }
+  return normalizedEvent;
 };
 
 export default class Ethereum {
@@ -58,11 +73,11 @@ export default class Ethereum {
     const options = { fromBlock, toBlock: 'latest' };
     const filter = this.readWeb3Contract.allEvents({}, options);
     filter.watch((error, event) => {
-      // console.log('watch', error, event);
+      const normalizedEvent = normalizeEvent(event);
       if (error) {
         logger.log('warn', `Got error while reading realtime events from contract: ${error.message}`);
       } else {
-        fn(event).then(() => {});
+        fn(normalizedEvent).then(() => {});
       }
     });
   }

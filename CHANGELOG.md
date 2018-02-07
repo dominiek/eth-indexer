@@ -1,6 +1,11 @@
 
 # 0.1.10 -- Bugfixes
 
+- Fix for `eth-query` dependency mismatch
+- Fix for big numbers on block numbers on new events
+
+# 0.1.10 -- Bugfixes
+
 - Ensuring transaction information is properly serialized
 
 # 0.1.9 -- Bugfixes

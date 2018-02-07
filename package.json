@@ -1,6 +1,6 @@
 {
   "name": "eth-indexer",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "High performance Ethereum smart contract event indexing for fast local retrieval",
   "author": "Dominiek Ter Heide <info@dominiek.com>",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "elasticsearch": "^14.0.0",
     "ethjs": "^0.3.3",
     "ethjs-abi": "^0.2.1",
-    "ethjs-query": "^0.3.3",
+    "ethjs-query": "^0.2.6",
     "ethjs-rpc": "^0.1.8",
     "ethjs-schema": "^0.2.0",
     "leveldown": "^2.1.1",
