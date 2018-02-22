@@ -9,6 +9,7 @@ import mongodbStore from './stores/mongodb';
 import elasticsearchStore from './stores/elasticsearch';
 import levelStore from './stores/level';
 import { serialize, unserialize } from './utils';
+import BigNumber from 'bignumber.js';
 
 export const stores = {
   memory: memoryStore,
@@ -99,7 +100,11 @@ export class Indexer {
     }
     this.blockchain.readNewEvents(toBlock, async (event) => {
       logger.log('info', `Processing real-time Ethereum ${event.event} event`);
-      this.store.put([event]);
+      const normalizeEvent = event;
+      normalizeEvent.blockNumber = new BigNumber(normalizeEvent.blockNumber);
+      normalizeEvent.transactionIndex = new BigNumber(normalizeEvent.transactionIndex);
+      normalizeEvent.logIndex = new BigNumber(normalizeEvent.logIndex);
+      this.store.put([normalizeEvent]);
     });
     this.blockchain.readAllEvents(
       fromBlock,

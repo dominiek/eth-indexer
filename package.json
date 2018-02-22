@@ -1,6 +1,6 @@
 {
   "name": "eth-indexer",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "High performance Ethereum smart contract event indexing for fast local retrieval",
   "author": "Dominiek Ter Heide <info@dominiek.com>",
   "license": "MIT",

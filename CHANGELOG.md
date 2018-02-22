@@ -1,5 +1,9 @@
 
-# 0.1.10 -- Bugfixes
+# 0.1.12 -- Bugfixes
+
+- Fix for big number conversion on new events
+
+# 0.1.11 -- Bugfixes
 
 - Fix for `eth-query` dependency mismatch
 - Fix for big numbers on block numbers on new events
